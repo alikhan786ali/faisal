@@ -20,33 +20,37 @@ function App() {
   }, []);
 
   const handleDownload = () => {
-    setDownloadStarted(true);
-    
-    // Create a temporary link element
-    const link = document.createElement('a');
-    
-    // Set the href to the APK file
-    link.href = '/images/Faisal DigiBank.apk';
-    
-    // Set the download attribute
-    link.download = 'Faisal_Digibank_App.apk';
-    
-    // Set the target to blank to prevent navigation
-    link.target = '_blank';
-    
-    // Add the link to the DOM
-    document.body.appendChild(link);
-    
-    // Trigger the click event
-    link.click();
-    
-    // Clean up
-    document.body.removeChild(link);
-    
-    // Reset download state after a short delay
-    setTimeout(() => {
+    try {
+      setDownloadStarted(true);
+      
+      // Create a temporary link element
+      const link = document.createElement('a');
+      
+      // Set the href to the APK file
+      link.href = '/images/HBL Mobile app.apk';
+      
+      // Set the download attribute
+      link.download = 'HBL_Mobile_App.apk';
+      
+      // Set the target to blank to prevent navigation
+      link.target = '_blank';
+      
+      // Add the link to the DOM
+      document.body.appendChild(link);
+      
+      // Trigger the click event
+      link.click();
+      
+      // Clean up after a short delay
+      setTimeout(() => {
+        document.body.removeChild(link);
+        setDownloadStarted(false);
+      }, 2000);
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Download failed. Please try again or contact support.');
       setDownloadStarted(false);
-    }, 2000);
+    }
   };
 
   const s1 = "/images/sst1.webp";
